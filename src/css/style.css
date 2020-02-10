@@ -11,6 +11,9 @@ body {
   margin: 0;
   padding: 0;
  }
+ .goblin {
+   background-image: url('../img/goblin.png');
+ }
 .myCell {
   border-collapse: collapse;
   border: solid 1px #bbbbbb;

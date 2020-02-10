@@ -2,19 +2,30 @@
 import GameState from './GameState';
 
 function runGoblin() {
-  let currentPos = -1;
-  while (currentPos === GameState.currentPosition || currentPos === -1) {
-    currentPos = Math.round(Math.random() * 15);
+  let nextPosition = -1;
+  while (nextPosition === GameState.currentPosition || nextPosition === -1) {
+    nextPosition = Math.round(Math.random() * 15);
   }
   const gamePad = document.getElementById('gamePad');
   const goblin = document.getElementById('goblin');
-  const newPlace = gamePad.childNodes[currentPos];
+  const newPlace = gamePad.childNodes[nextPosition];
   newPlace.appendChild(goblin);
   goblin.classList.remove('invisible');
-  GameState.currentPosition = currentPos;
+  GameState.currentPosition = nextPosition;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const AutoAddChild = (node, typ) => {
+    const newElement = document.createElement(typ);
+    node.appendChild(newElement);
+    return newElement;
+  };
+  const goblin = AutoAddChild(document.getElementById('workdiv'), 'div');
+  goblin.id = 'goblin';
+  goblin.classList.add('goblin');
+  goblin.classList.add('invisible');
+  // const goblinPic = AutoAddChild(goblin, 'img');
+  // goblinPic.src = './img/goblin.png';
   const gamePad = document.getElementById('gamePad');
   let htmlVar = '';
   for (let y = 0; y < 16; y++) {
